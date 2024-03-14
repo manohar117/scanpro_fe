@@ -1,0 +1,35 @@
+
+<!---    -->
+
+<div class="w-full">
+    <!--Inside Navbar -->
+    <div style="height: 50px;" class="w-100 bg-gray-50 border-b-2 flex">
+        <button class="font-bold bg-red-200 rounded  mx-3 my-auto px-2" (click)="goBack()">Back</button>
+        <div class="my-auto px-3 font-bold text-lg flex" >Path :  <div class="text-md border-b-2 bg-gray-100 px-2 flex">
+            <div *ngFor="let pathpart of pathArray; let i =index" class="flex"><p class="text-blue-600" (click)="goTo(i)">{{pathpart}}</p>/</div>
+        </div></div>
+        
+        <form  class="w-auto my-auto h-3/4 relative ms-auto ">
+            <input style="width: 300px;" class="my-auto border z-1 h-full rounded-l-md px-3 text-md">
+            <button  type="submit" class="fa fa-search p-2 px-3 bg-gray-200 rounded-r-md absolute top-0 h-full"></button>
+        </form>
+    
+        <div class="my-auto ms-auto px-10">
+            <button (click)="MakeNewFile()" class="px-3 py-1 rounded-md bg-green-600 text-md font-bold text-white">New File</button>
+            <button (click)="MakeNewFolder()" class="px-3 py-1 ms-2 rounded-md bg-blue-600 text-md font-bold text-white">New Folder</button>
+            
+        </div>
+    </div>
+    
+    <div  class="flex flex-wrap viewzone">
+        <div class="p-3" *ngFor="let dir of contents" (dblclick)="doubleClick(dir['name'],dir['type'],dir['id'])">
+            <div *ngIf="dir['name']!='INIT'">
+                <img *ngIf="dir['type']=='dir'" style="height: 100px;"  src="../../assets/folderIcon.png">
+                <img *ngIf="dir['type']=='file'" style="height: 100px;"  src="../../assets/docIcon.png">
+                <div class="text-center w-100 ">{{dir["name"]}}</div> 
+            </div>
+            
+        </div>
+    </div>
+</div>
+
